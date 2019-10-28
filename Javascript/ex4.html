@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 4</title>
+</head>
+<body>
+    <form action="javascript:void(9)">
+        <label for="eka">Anna numero:</label><input type="number" id="numero"/><br /><br/>
+    </form>
+    <p><button onclick="kertotaulu()">Laske kertotaulu!</button></p>
+    <p id="summa"></p>
+
+    <script>
+    function kertotaulu() {
+        let number = parseInt(document.getElementById("numero").value);
+        let result = "";
+        for(let i = 1; i <= 10; i++) {
+            // result += number + " * " + i + " = " + (number*i) + "<br>";
+            result += `${number} * ${i} = ${(number*i)}<br>`;
+        }
+        document.getElementById("summa").innerHTML = result;;
+    }
+    </script>
+</body>
+</html>

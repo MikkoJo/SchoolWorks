@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 13</title>
+</head>
+
+<body>
+    <h1>Exercise 13</h1>
+    <form action="javascript:void(9)">
+        <label for="number">Anna numero:</label><input type="text" id="number" /><br /><br />
+    </form>
+    <p><button onclick="checkNumber()">Press button!</button></p>
+    <p id="result"></p>
+
+    <script>
+        function checkNumber() {
+            // let num = document.getElementById("number").value;
+            let result = document.getElementById('result');
+            let num = Number(document.getElementById("number").value);
+            do {
+                if (Number.isNaN(num) || num !== num) {
+                    result.innerText = "Anna numero";
+                }
+                else {
+                    result.innerText = num;
+                    break;
+                }
+                console.log("asd");
+             } while (Number.isNaN(num) || num !== num) 
+            
+        }
+    </script>
+</body>
+
+</html>

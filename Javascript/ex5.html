@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 5</title>
+</head>
+
+<body>
+    <form action="javascript:void(9)">
+        <label for="eka">Anna numero:</label><input type="number" id="number" /><br /><br />
+    </form>
+    <p><button onclick="checkNumber()">Calculate sum!</button></p>
+    <h2 id="numero"></h2>
+
+    <script>
+        function checkNumber() {
+            let number = document.getElementById("number").value;
+            let result = document.getElementById('numero');
+
+            if (number < 25) {
+                result.innerText = 'liian pieni';
+                result.style.color = 'red';
+            }
+            else if(number > 100) {
+                result.innerText = 'liian suuri';
+                result.style.color = 'red';
+            }
+            else {
+                result.innerText = 'ok';
+                result.style.color = 'green';
+            }
+            
+        }
+    </script>
+</body>
+
+</html>

@@ -24,6 +24,8 @@
 hs_err_pid*
 
 Ubuntu
+nataliaGit.txt
+Git_test/
 
 #Eclipse
 **/bin
@@ -31,3 +33,10 @@ Ubuntu
 .settings/
 .project
 target/
+.metadata/
+
+#Python
+__pycache__/
+
+#vscode
+.vscode/

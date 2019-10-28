@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 3</title>
+</head>
+<body>
+    <title>Exercice 3</title>
+    <p id='tervehdys'></p>
+    <p/>
+    <form action="javascript:void(9)">
+        <label for="eka">Eka:</label><input type="number" id="eka"/><br /><br/>
+        <label for="toka">Toka:</label><input type="number" id="toka"><br />
+    </form>
+    <p><button onclick="calcSum()">Calculate sum!</button></p>
+    <p id="summa"></p>
+
+    <script>
+    function calcSum() {
+        let first = document.getElementById("eka").value*1;
+        let second = document.getElementById("toka").value*1;
+        document.getElementById("summa").innerText = "Summa on: " + (first+second);
+    }
+    </script>
+</body>
+</html>

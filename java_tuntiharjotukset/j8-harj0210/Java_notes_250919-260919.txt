@@ -1,0 +1,191 @@
+25.09 - muistio
+
+Funktionaalinen Java 
+Funktionaalinen Ohjelmointi? 
+Kieliä esim. Haskell, F#, Lisp jotka "täysin funktionaalisia"
+-----------------------
+* Lisp, vuoteen 1958
+* funktionaalinen kieli, "sulkuviidakko" 
+* Java 8: high-order functions, REPL (shell), recursion
+* Autolisp, Common Lisp, Emacs Lisp 
+
+Esimerkki: 
+
+defun factorial (N)
+  (if (= N 1)
+      1
+    (* N (factorial (- N 1)))))
+-----------------------
+Haskell 
+* täysin funktionaalinen ohjelmointi
+* ei lainkaan sivuvaikutuksia
+* aika usein opetetaan tällä kielellä funktionaalisen ohjelmoinnin kursseilal
+* Tiobe Index: Haskell on vasta sijalla 50. (0.198%)
+
+* Huom! Yleisimmin töissä olevat ohjelmoijat osaavat 2-3 ohjelmointikieltä hyvin
+
+Esimerkki Haskell: 
+
+fac :: (Integral a) => a -> a
+fac 0 = 1
+fac n = n * fac (n - 1)
+Kutsu: fac(10)
+
+Pääohjelma ja tulostaminen: 
+
+main = do  
+   putStrLn "Hello, what's your name?"  
+   name <- getLine  
+   putStrLn ("Hey " ++ name ++ ", you rock!")  
+-------------------------
+Java - kertoman laskenta: 
+
+Javasta kolme eri versiota kertoman laskentaan 
+6! = 1*2*3*4*5*6
+
+public static long factorialIterative ( long n ) {
+    long r = 1;
+    for ( long i = 1; i <= n; i++ )
+    {
+        r*=i;  // ==sama r = r * i 
+    }
+    return r;
+}
+
+----------------------------
+
+public static long factorialRecursive( long n )
+{ // if-lause if (n==1) { return 1;}
+  //      else { return n * factorialRecursive( n-1 );}
+  return n == 1 ? 1 : n * factorialRecursive( n-1 );
+}
+
+--------------------------
+
+public static long factorialStreams( long n )
+{
+  // Luo luvut: 1,2,3,4,5,6,7,...,n
+  // Tämä rakenne toimii kuten for-silmukka, ainakin melkein mutta tätä voi ajaa myös rinnakkain...
+  return LongStream.rangeClosed( 1, n )
+    //.reduce(1, ( long a, long b ) -> a * b);
+	.reduce(1, ( tulo, lisays ) -> tulo * lisays);
+}
+// sequential = peräkkäin suoritettava
+// parallel   = rinnakkain suoritettava
+
+------------------------------
+Kuinka kirjoittaa Lambda-lauseke? 
+BinaryOperator<Integer> tuloAbs = (Integer x, Integer y) -> 
+{ Integer tulos = Math.abs(x*y); return tulos; }
+-------
+BinaryOperator<Integer> tuloAbs = (x, y) -> 
+{ Integer tulos = Math.abs(x*y); return tulos; }
+-------
+BinaryOperator<Integer> tuloAbs = (x, y) -> 
+{ return Math.abs(x*y); }
+-------
+BinaryOperator<Integer> tuloAbs = (x, y) -> Math.abs(x*y);
+* Lyhyt merkintätapa
+* Syöttöparametrien tyypit pois 
+* return lause ja kaarisulkeet myös pois (jos mahdollista)
+-----
+* Usein hyvä kirjoittaa oma staattinen funktio, jota vain kutsuu lambda-lausekkeesta: 
+BinaryOperator<Integer> tuloAbs = (x, y) -> laskeAbs(x,y);
+public static Integer laskeAbs(Integer a, Integer b) {
+  return Math.abs(a * b);
+}  
+------------------------------
+
+Iltapäivällä 
+* Voidaan käydä etänä olleet harjoitukset
+* Käydään saman vähän Mavenia läpi (Apache Maven
+Maven-projekti 
+* Project Object Model (POM)
+* Maven on "ohjelmistoprojektinhallintahirviö"
+Eclipse: File/Import/existing Maven project
+* projektissa juuressa on pom.xml
+Eclipse: Coverage As/JUnit tests
+* komentorivi "Run As/Maven Build", goals: clean package. 1) puhdistaa aiemmat käännökset (class poistetaan) 
+2) ajaa yksikkötestit (JUnit testit)
+3) kääntää kaikki projektin ohjelmat (class) 
+4) vieläpä paketoi koko ohjelman jar-muotoon. 
+
+Huom! Projektissa riittää, että pom.xml on projektin juuressä.
+
+-----------------------------------
+26.09.2019 - muistio 
+
+-- Suurin osa merkinnöistä tehdyissä koodiesimerkeissä sekä mallivastauksissa
+
+Metodireferenssi:
+
+* Vaihtoehtoinen syntaksi lambda-lausekkeelle.
+
+Esim. ao. Metodireferenssi olettaa, että max() saa kaksi parametriä!
+
+numbers.stream().reduce(Double.MIN_VALUE, Double::max);
+
+tai lambdana:
+
+Double.NEGATIVE_INFINITY - negatiivinen ääretön
+numbers.stream().reduce(-Double.MAX_VALUE, (x,y)->Double.max(x,y));
+--> x == maksimiarvo tällä hetkellä
+--> y == vuorossa oleva vertailtava arvo 
+- Double.MAS_VALUE == asetettu alkuarvo
+
+
+----------------------------------  
+Harjoitukset: 13-1 ja 13-2: 
+
+13-1: Testiohjelma, joka pitää suorittaa JUnit-testinä.
+	
+@Test metodin edessä, jotta voi suorittaa testiohjelmana.
+
+------------------------------------
+JDoodle
+Online Java Compiler - toimii selaimella
+Pystyi avamaan uusia Java versioita (Java 10)
+https://www.jdoodle.com/online-java-compiler/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

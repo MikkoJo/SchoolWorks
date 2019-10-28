@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 8</title>
+</head>
+<body>
+    <p><button onclick="printNumbers()">Press here!</button></p>
+    <p id="result"></p>
+
+    <script>
+    function printNumbers() {
+        let resElem = document.getElementById('result');
+        for(let i = 1; i <= 130; i++) {
+            if(i % 2 !== 0) {
+                if(i < 2) {
+                    resElem.innerText += `${i}`;
+                }
+                else {
+                    resElem.innerText += `, ${i}`;
+                }
+            }
+        }
+    }
+    </script>
+</body>
+</html>

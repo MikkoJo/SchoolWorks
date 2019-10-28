@@ -1,0 +1,86 @@
+Aamupäivällä luennointia:
+
+Tuntiharjoituksia - muunnetaan olemassa olevia java-Olio-ohjelmia
+funktionaaliseen suuntaan. Funktionaalisuutta käytetään toimintojen toteuttamiseen. 
+
+Pohjaprojekti on Maven-projektina. 
+Jaossa kurssin sivuilla .... tässä myöhemmin. 
+
+Lambda-lauseke - mahdolliset syntaksit: 
+
+(x,y,z) -> {return x*y*z}
+(int x,int y,int z) -> {return x*y*z} // palautusarvo on int 
+(x) -> x*x 
+x -> x*x 
+() -> 42
+
+public static int sum(int x, int y) {
+  return x*y;
+}
+sum: (x,y) -> x*y  
+sum: (x,y) -> {return x*y;}
+
+Ei-funktionaalinen ratkaisu: 
+
+public static void tulostaSumma(int sum) {
+  System.out.println("Summa = " + sum);
+}
+Voi silti kirjoittaa lambda-lausekkeena: 
+(sum) -> System.out.println("Summa = " + sum);
+
+-----------------------
+Optional - ehkä-tietotyyppi:
+
+String luettuMerkkijono = lueTiedosto("file.txt");
+if (luettuMerkkijono != null) {
+	int pituus = countLength.apply(luettuMerkkijono);
+}
+// Funktion ei pitäisi palauttaa poikkeusta (NullPointerException yms) => käytännössä toki näin voi käydä. 
+// Tämän takia pitää testata tehdyt funktiot kaikilla mahdollisalla syötteille. 
+// Java 8: Optional<Integer> - voi olla int tai null! 
+
+-------------------------------------------
+
+Seuraavat harjoitukset tunnilla - osittain yhdessä: 
+
+Muunnetaan oliopohjainen toteutus funktionaaliseksi
+
+"Java 8 tehtäväpohjia tuntitehtäviin" 
+
+1) Pura (unzip) hakemistoksi Eclipsen Workspacen alle. 
+c:\joku_dir_workspace\basic-java-examples-tuntipohjat
+src\  - lähdekoodit
+test\ - testikoodeja
+pom.xml - Maven-projektin konfigurointitiedosto
+2) Tuo Eclipseen Maven-projektina (Import Maven Project)
+3) Valitse projektille (hiiren oikealla) Eclipsesta 
+maven/Update Project 
+
+
+-------------------------------------------
+src/basic -hakemistossa eli basic-paketissa 
+Uuden version voi kirjoittaa esim. alipakettiiin
+basic.functional (luo package Eclipsessa)
+* Voit kopioida java-tiedosto eri pakettiin sellaisenaan
+
+Tunti I:
+StaticMethodsDemo ==> StaticMethodsFunctionalDemo
+
+Määritetään luokkaan uusi funktionaalinen rajapintaolio:
+static BiFunction<T, U, R> 
+missä T, U sekä R käytettävät tietotyypit.
+Kutsuminen - funktion kutsuminen apply(), jonne annetaan syöttöparametrit:
+metodi.apply(20, 30)
+	
+-------------------------------------------
+Tunti II:
+CalculateFunctionsDemo
+IntStream.rangeClosed(1, 12).forEach(....)
+- IntStream.rangeClosed(alku, loppu)....
+- tehdään kaksi sisäkkäistä streamin forEach()-toteutusta
+
+-------------------------------------------
+Tunti III:
+ForCalcDemo
+- IntStream.rangeClosed
+- reduce() -metodi streamin läpikäyntiin

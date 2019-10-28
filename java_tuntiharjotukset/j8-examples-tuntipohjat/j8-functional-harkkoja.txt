@@ -1,0 +1,93 @@
+Java 8 - tuntiharkkoja 
+
+Näitä voi tehdä etätehtävinäkin. 
+* Ainakin harjoitukset III-V voi tehdä ennen kurssiviikkoa 14 (24.09) mennessä
+
+Seuraavat harjoitukset tunnilla - osittain yhdessä: 
+
+Muunnetaan oliopohjainen toteutus funktionaaliseksi
+
+Lataa "Java 8 tehtäväpohjia tuntitehtäviin" 
+
+1) Pura (unzip) hakemistoksi Eclipsen Workspacen alle. 
+c:\joku_dir_workspace\basic-java-examples-tuntipohjat
+src\  - lähdekoodit
+test\ - testikoodeja
+pom.xml - Maven-projektin konfigurointitiedosto
+
+2) Tuo Eclipseen Maven-projektina (Import Maven Project)
+
+3) Valitse projektille (hiiren oikealla) Eclipsesta 
+maven/Update Project 
+
+
+-------------------------------------------
+src/basic -hakemistossa eli basic-paketissa 
+Uuden version voi kirjoittaa esim. alipakettiiin
+basic.functional (luo package Eclipsessa)
+* Voit kopioida ei-funktionaalisen toteutuksetn java-tiedoston eri pakettiin sellaisenaan
+  harjoituksen pohjaksi
+
+-------------------------------------------
+
+Tunti/Etä I:
+StaticMethodsDemo ==> StaticMethodsFunctionalDemo
+
+Määritetään luokkaan uusi funktionaalinen rajapintaolio:
+static BiFunction<T, U, R> 
+missä T, U sekä R käytettävät tietotyypit.
+Kutsuminen - funktion kutsuminen apply(), jonne annetaan syöttöparametrit:
+metodi.apply(20, 30)
+
+Tämän tehtävän ratkaisu löytyy jo tästä paketista!	
+-------------------------------------------
+Tunti/Etä II:
+CalculateFunctionsDemo
+IntStream.rangeClosed(1, 12).forEach(....)
+- IntStream.rangeClosed(alku, loppu)....
+- tehdään kaksi sisäkkäistä streamin forEach()-toteutusta
+
+Tämän tehtävän ratkaisu löytyy jo tästä paketista!	
+
+
+-------------------------------------------
+Tunti/Etä III:
+ForCalcDemo
+- IntStream.rangeClosed
+- reduce() -metodi streamin läpikäyntiin
+- "redusoi" taulukon alkiot ensimmäisestä viimeiseen -
+samalla voidaan tehdä niiden avulla esimerkiksi summan laskentaa.
+
+-------------------------------------------
+Tunti/Etä IV:
+Int2DArraySortDemo 
+- muutetaan järjestelymetodi 
+- järjestelymetodin voi toteuttaa lambda-lausekkeena
+- java.util.Comparator 
+
+
+-------------------------------------------
+Tunti/Etä V:
+DerivedClassArrayDemo
+- List<Person> persons = List.of(...)
+- List.of(olio1, olio2, olio3) eli voi ottaa parametrinään oliorefenssejä n-kappaletta
+- List: läpikäynti iteroinnin avulla
+
+
+-------------------------------------------
+Tunti/Etä VI:
+HashTreeSetFunctionalDemo
+
+* suhteellisen vaikea - tee ajatuksella
+
+Set-rakenne Integer-taulukosta
+Integer tmp[] = { 30, 20, 10, 60, 40, 50 };
+Set<Integer> set = Set.of(tmp);
+
+Vain TreeSet pitää alkiot järjestyksessä
+// In the TreeSet nodes are sorted
+TreeSet<Integer> tree = new TreeSet<>(set);
+-------------------------------------------
+
+
+

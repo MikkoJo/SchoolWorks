@@ -1,0 +1,9 @@
+[submodule "DevOps/DevOps-exc1"]
+	path = DevOps/DevOps-exc1
+	url = https://github.com/MikkoJo/DevOps-exc1.git
+[submodule "DevOps/express_example"]
+	path = DevOps/express_example
+	url = https://github.com/MikkoJo/express_example.git
+[submodule "java_tuntiharjotukset/Lipunmyynti"]
+	path = java_tuntiharjotukset/Lipunmyynti
+	url = https://github.com/MikkoJo/Lipunmyynti.git
