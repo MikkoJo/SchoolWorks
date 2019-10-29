@@ -15,7 +15,7 @@
         let resElem = document.getElementById('result');
         for(let i = 1; i <= 130; i++) {
             if(i % 2 !== 0) {
-                if(i < 2) {
+                if(!resElem.innerText) {
                     resElem.innerText += `${i}`;
                 }
                 else {

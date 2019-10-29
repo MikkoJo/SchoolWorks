@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 16</title>
+</head>
+<body>
+    <h1>Exercise 16</h1>
+    <form action="javascript:void(9)">
+        <label for="eka">Eka:</label><input type="number" id="eka"/><br /><br/>
+        <label for="toka">Toka:</label><input type="number" id="toka"><br />
+        <label for="kolmas">Kolmas:</label><input type="number" id="kolmas"/><br /><br/>
+    </form>
+    <p><button onclick="calculate()">Press Button!</button></p>
+    <p id="result"></p>
+
+    <script>
+    function calculate() {
+        let first = Number(document.getElementById("eka").value);
+        let second = Number(document.getElementById("toka").value);
+        let third = Number(document.getElementById("kolmas").value);
+        let resultElem = document.getElementById("result");
+
+        resultElem.innerHTML = Math.max(first, second, third);
+        resultElem.style.border = '2px black solid';
+        // resultElem.style.borderColor= 'black';
+        // resultElem.style.borderStyle= 'solid';
+
+    }
+    </script>
+</body>
+</html>

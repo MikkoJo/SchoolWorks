@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 15</title>
+</head>
+
+<body>
+    <h1>Exercise 15</h1>
+    <form action="javascript:void(9)">
+    <label for="testText">Anna teksti:</label><input type="text" id="testText" /><br /><br />
+    </form>
+    <p><button onclick="checkUpper()">Press button!</button></p>
+    <p id="result"></p>
+    <p id="resultUpper"></p>
+
+    <script>
+        function checkUpper() {
+            let testText = document.getElementById("testText").value;
+            let result = document.getElementById('result');
+            let resultUpper = document.getElementById('resultUpper');
+
+            result.innerText = testText.charAt(0).toUpperCase() + testText.slice(1);
+            resultUpper.innerText = testText.toUpperCase();
+            // if ( resultUpper.charAt(0)) {
+            //     petSound.innerText = 'vuhvuh';
+            // }
+            // else if(pet === 'kissa') {
+            //     petSound.innerText = 'miumau';
+            // }
+            // else {
+            //     petSound.innerText = 'urrinmurrin';
+            // }
+            
+        }
+    </script>
+</body>
+
+</html>

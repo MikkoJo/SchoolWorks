@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 17</title>
+</head>
+
+<body>
+    <h1>Exercise 17</h1>
+    <form action="javascript:void(9)">
+        <label for="eka">Eka:</label><input type="number" id="eka" /><br /><br />
+        <label for="toka">Toka:</label><input type="number" id="toka"><br />
+    </form>
+    <p><button onclick="calculate()">Press Button!</button></p>
+    <p id="result"></p>
+
+    <script>
+        let resultElem = document.getElementById("result");
+
+        function calculate() {
+            let first = Number(document.getElementById("eka").value);
+            let second = Number(document.getElementById("toka").value);
+
+            if (Math.abs(1000-first) < Math.abs(1000-second)) {
+                resultElem.innerHTML = first;
+            }
+            else if(Math.abs(1000-first) > Math.abs(1000-second)) {
+                resultElem.innerHTML = second;
+            }
+            else {
+                resultElem.innerHTML = "";
+            }
+
+        }
+    </script>
+
+</body>
+
+</html>

@@ -12,13 +12,17 @@
     <p id="result"></p>
 
     <script>
-    function printNumbers() {
         let intArray = [1,2,3,5,6,7,9,6,5,4,3];
         let result = 0;
-        intArray.forEach(function (number){
-            result += number;
-        });
-        document.getElementById('result').innerText = result;
+
+    function printNumbers() {
+        // Lambda
+        // intArray.forEach((number) => {result += number});
+        intArray.forEach(number => result += number);
+        // intArray.forEach(function (number){
+        //     result += number;
+        // });
+        document.getElementById('result').innerHTML = result;
     }
     </script>
 </body>

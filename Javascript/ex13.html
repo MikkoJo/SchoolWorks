@@ -21,16 +21,12 @@
             // let num = document.getElementById("number").value;
             let result = document.getElementById('result');
             let num = Number(document.getElementById("number").value);
-            do {
-                if (Number.isNaN(num) || num !== num) {
+            if (Number.isNaN(num) || num !== num) {
                     result.innerText = "Anna numero";
                 }
-                else {
-                    result.innerText = num;
-                    break;
-                }
-                console.log("asd");
-             } while (Number.isNaN(num) || num !== num) 
+            else {
+                result.innerText = num;
+            }
             
         }
     </script>
