@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 22</title>
+</head>
+<body>
+    <h1>Exercise 22</h1>
+    <button onclick="Car.carInfo()">Create car</button>
+    <p id='result'></p>
+
+    <script>
+        let resElement = document.getElementById('result');
+        let Car = {
+            'name': 'BMW',
+            'weight': 1200,
+            'color': 'Blue',
+            'carInfo': function() {
+                resElement.innerHTML = `Your Car is ${this.name} and it weights ${this.weight} and it’s color is ${this.color}.`
+                return ""
+            }
+        }
+    
+    </script>
+</body>
+
+</html>

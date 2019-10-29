@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 24</title>
+</head>
+
+<body>
+    <h1>Exercise 24</h1>
+    <form action="javascript:void(9)" onsubmit="printCar(event)">
+            <label for="name">name:</label><input type="text" id="name"/><br /><br/>
+            <label for="weight">weight:</label><input type="number" id="weight"><br />
+            <label for="color">color:</label><input type="text" id="color"/><br /><br/>
+            <input type="submit" value="Send"/>
+    </form>
+    <!-- <p><button onclick="calculate()">Press Button!</button></p> -->
+    
+    <!-- <p>
+    <button onclick="createCar()">Create car</button>
+    </p> -->
+    <p id='result'></p>
+
+    <script>
+        let resElement = document.getElementById('result');
+
+        let nameEle = document.getElementById("name");
+        let weightEle = document.getElementById("weight");
+        let colorEle = document.getElementById("color");        
+
+        let Car = function (name, weight, color) {
+                this.name = name;
+                this.weight = weight;
+                this.color = color;
+                this.carInfo = function () {
+                    resElement.innerHTML = `Your Car is ${this.name} and it weights ${this.weight} and it’s color is ${this.color}.`
+                }
+            }
+        
+        function printCar(e) {
+            e.preventDefault();
+
+            let name = nameEle.value;
+            let weight = Number(weightEle.value);
+            let color = colorEle.value;
+
+            car = new Car(name, weight, color)
+            car.carInfo();
+
+        }
+
+
+    </script>
+</body>
+
+</html>
