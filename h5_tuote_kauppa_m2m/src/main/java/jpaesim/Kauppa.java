@@ -3,7 +3,9 @@ package jpaesim;
 import java.io.Serializable;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -13,18 +15,21 @@ public class Kauppa implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-
-	// TODO: Muut ominaisuudet
-
-	@ManyToMany //- määritettävä kentän nimi, joka mäpätään tänne Tuote taulusta (mappedBy="kaupat")
+	
+	@ManyToMany(mappedBy="kaupat")
 	private Collection<Tuote> tuotteet;
+
+	private String nimi;
+	private String osoite;
 
 	private static final long serialVersionUID = 1L;
 
+	// TODO: Kaupan muut ominaisuudet
+	
 	public Kauppa() {
 		super();
+		tuotteet = new ArrayList<>();
 	}
-
 
 	public Integer getId() {
 		return this.id;
@@ -34,19 +39,37 @@ public class Kauppa implements Serializable {
 		this.id = id;
 	}
 
+	public String getNimi() {
+		return nimi;
+	}
+
+	public void setNimi(String nimi) {
+		this.nimi = nimi;
+	}
+
+	public String getOsoite() {
+		return osoite;
+	}
+
+	public void setOsoite(String osoite) {
+		this.osoite = osoite;
+	}
+
+	public void setTuotteet(List<Tuote> tuotteet) {
+		this.tuotteet = tuotteet;
+	}
+	
 	public Collection<Tuote> getTuotteet() {
 		return tuotteet;
 	}
 
-	public void setTuotteet(Collection<Tuote> tuotteet) {
-		this.tuotteet = tuotteet;
-	}
-
-
-
 	@Override
 	public String toString() {
-		return "Kauppa [id=" + id + "]";
+		return "Kauppa [id=" + id + ", nimi=" + nimi + ", osoite=" + osoite + "]";
 	}
+//	@Override
+//	public String toString() {
+//		return "Kauppa [id=" + id + "]";
+
 
 }

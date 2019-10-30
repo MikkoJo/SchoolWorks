@@ -123,7 +123,7 @@ public class SimpleEntityMain {
 			.getResultList();
 //		tuloksetR.forEach(l -> System.out.println("Name: " + l.getName() + ", Description: " + l.getDesc()));
 		transaktio.begin();
-		tuloksetR.forEach(e -> manageri.remove(e));
+			tuloksetR.forEach(e -> manageri.remove(e));
 		transaktio.commit();
 		
 		System.out.println("After remove");
