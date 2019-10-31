@@ -5,7 +5,8 @@
 	<persistence-unit name="jpa_tuote" transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>jpaesim.Tuote</class>
-		<class>jpaesim.Kauppa</class>
+		<class>jpaesim.Kirja</class>
+        <class>jpaesim.Cd</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />

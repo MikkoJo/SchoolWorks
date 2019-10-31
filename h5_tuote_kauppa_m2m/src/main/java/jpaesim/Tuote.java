@@ -8,7 +8,8 @@ import java.util.List;
 import javax.persistence.*;
 
 @javax.persistence.Entity
-//@NamedQuery(name = "selectTuotteet", query = "TODO: Tuote, johon liitetään kaupat")
+@NamedQuery(name = "selectTuotteet",
+query = "SELECT DISTINCT t from Tuote t JOIN FETCH t.kaupat")
 public class Tuote implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -17,15 +18,11 @@ public class Tuote implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-//	@ManyToMany(cascade = CascadeType.ALL)
-//	@ManyToMany(cascade=CascadeType.ALL)
-//	@JoinColumn(name = "tuote_id")
 //	@JoinTable(
 //			 joinColumns={@JoinColumn(name="id")},
 //			 inverseJoinColumns={@JoinColumn(name="id")}
 //			 )
 	@ManyToMany(targetEntity = Kauppa.class)
-//	@ManyToMany(mappedBy = "tuotteet")
 	private Collection<Kauppa> kaupat;
 	private String nimi;
 	private String koodi;
@@ -75,7 +72,7 @@ public class Tuote implements Serializable {
 
 	public void setKaupat(List<Kauppa> kaupat) {
 		this.kaupat = kaupat;
-		kaupat.forEach(k -> k.addTuote(this));
+//		kaupat.forEach(k -> k.addTuote(this));
 	}
 	
 	public void addKauppa(Kauppa kauppa) {

@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-public class TestTuoteKauppaSuhdeN2N {
+public class TestTuoteInherit {
 
 	public static void main(String[] args) throws Exception {
 		// Startataan H2 TCP-serverimoodissa
@@ -16,82 +16,61 @@ public class TestTuoteKauppaSuhdeN2N {
 		EntityManager manageri = tehdas.createEntityManager();
 		EntityTransaction transaktio = manageri.getTransaction();
 
-		Tuote t1 = new Tuote();
-        t1.setNimi("Pesäpallo");
-        t1.setHinta(15.56);
-        t1.setKoodi("A321");
+		Kirja k1 = new Kirja();
+		k1.setIsbn("A123");
+		k1.setNimi("Core Java");
+		k1.setHinta(26.99); 
+		k1.setTekijat("Cay Horstmann"); 
 
-        Tuote t2 = new Tuote();
-        t2.setNimi("Jalkapallo");
-        t2.setHinta(19.99);
-        t2.setKoodi("A654");
+		Kirja k2 = new Kirja(); 
+		k2.setIsbn("A223"); 
+		k2.setNimi("JavaScript Ninja"); 
+		k2.setTekijat("John Resig"); 
+		k2.setHinta(33.50); 
 
-        Tuote t3 = new Tuote();
-        t3.setNimi("Koripallo");
-        t3.setHinta(24.99);
-        t3.setKoodi("B342");
+		Kirja k3 = new Kirja(); 
+		k3.setIsbn("A313"); 
+		k3.setNimi("Thinking Of Java"); 
+		k3.setTekijat("Bruce Eckel"); 
+		k3.setHinta(9.95); 
+
+		Cd cd1 = new Cd("Iron Maiden", "Powerslave", 3048, 8, 19.95); 
+		Cd cd2 = new Cd("Tom Petty", "Full Moon Fever", 2398, 12, 14.95); 
+		Cd cd3 = new Cd("Paula Koivuniemi", "Luotan Sydämen Ääneen", 2850, 12, 4.95); 
+		Cd cd4 = new Cd("The Beatles", "Abbey Road", 2545, 17, 29.95); 
         
-        Kauppa k1 = new Kauppa();
-        k1.setNimi("Palloliike");
-        k1.setOsoite("Pallokuja 2, Helsinki");
-        
-        Kauppa k2 = new Kauppa();
-        k2.setNimi("Välineaitta");
-        k2.setOsoite("Kauppatie 45, Jyväskylä");
-
-        Kauppa k3 = new Kauppa();
-        k3.setNimi("Verkkosportti");
-        k3.setOsoite("Kuplahallintie 15, Toijala");
-
-        List<Tuote> tuotteet1 = new ArrayList<>();
-        tuotteet1.add(t1);
-        List<Tuote> tuotteet2 = new ArrayList<>();
-        tuotteet2.add(t1);
-        tuotteet2.add(t3);
-        List<Tuote> tuotteet3 = new ArrayList<>();
-        tuotteet3.add(t3);
-        
-//        k1.setTuotteet(Arrays.asList(t1, t2));
-//        k1.setTuotteet(tuotteet1);
-        k2.setTuotteet(tuotteet2);
-        k3.setTuotteet(tuotteet3);
-		// TODO: Määritä muut kaupat ja tuotteet
-
-        t1.setKaupat(Arrays.asList(k1,k3));
-//        t2.setKaupat(Arrays.asList(k3));
-		//kaupat.add(t2);
-
-		
-		// TODO: Lisätään muut kaupat
-		// *******************
-
 		transaktio.begin();
 
 		manageri.persist(k1);
 		manageri.persist(k2);
 		manageri.persist(k3);
-		manageri.persist(t1);
-		manageri.persist(t2);
-		manageri.persist(t3);
+		manageri.persist(cd1);
+		manageri.persist(cd2);
+		manageri.persist(cd3);
+		manageri.persist(cd4);
 		// TODO: Muut tuotteet ja kaupat myös tallennettava
 		
 		transaktio.commit();
-		
+		System.out.println(k1);
+		List<Kirja> kirjat = manageri
+				.createQuery("SELECT b FROM Kirja b", Kirja.class)
+				.getResultList();
+		kirjat.forEach(System.out::println);
 
-		// Testihaku - haetaan ja tulostetaan kaikki kannassa olevat
-		// Tuote-entiteetit
-	    //@SuppressWarnings("unchecked")
-		//List<Tuote> entiteetit = manageri.createNamedQuery("selectTuotteet").getResultList();
-		//for (Tuote e : entiteetit) {
-		//	System.out.println("Rivi: " + e);
-		//}
+		List<Cd> cdt = manageri
+				.createQuery("SELECT b FROM Cd b", Cd.class)
+				.getResultList();
+		cdt.forEach(System.out::println);
 
-		List<Object[]> shops = manageri.createQuery("Select k, t from Kauppa k INNER JOIN k.tuotteet t", Object[].class).getResultList();
-		for (Object[] row : shops) {
-			  System.out.println(row[0] + " " +  row[1]);
-			}
-		
+		System.out.println("\nC-kohta: Hinta 15€ tai yli\n");
+		manageri.createNamedQuery("etsiKaalliitLevyt", Cd.class)
+			.setParameter("rajahinta", 15).getResultList()
+			.forEach(System.out::println);
 
+		System.out.println("\nD-kohta: Hinta 15€ tai alle\n");
+		manageri.createNamedQuery("etsiHalvat", Tuote.class)
+			.setParameter("rajahinta", 15)
+			.getResultList().forEach(System.out::println);
 		manageri.close();
 		tehdas.close();
         // Lopetetaan h2-palvelin
