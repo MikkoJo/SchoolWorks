@@ -71,6 +71,15 @@ public class TestTuoteInherit {
 		manageri.createNamedQuery("etsiHalvat", Tuote.class)
 			.setParameter("rajahinta", 15)
 			.getResultList().forEach(System.out::println);
+		System.out.println("Pelkät Cdt:");
+		List<Tuote> tuotteet = manageri.createNamedQuery("etsiHalvat", Tuote.class)
+		.setParameter("rajahinta", 15)
+		.getResultList();
+		tuotteet.stream()
+			.filter(t -> t.getClass().getCanonicalName() == "jpaesim.Cd")
+			.forEach(System.out::println);
+//		tuotteet.forEach(t -> System.out.println(t.getClass().getCanonicalName()));
+		
 		manageri.close();
 		tehdas.close();
         // Lopetetaan h2-palvelin
