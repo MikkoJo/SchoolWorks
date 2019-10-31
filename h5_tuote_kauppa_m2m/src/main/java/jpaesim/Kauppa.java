@@ -17,6 +17,7 @@ public class Kauppa implements Serializable {
 	private Integer id;
 	
 	@ManyToMany(mappedBy="kaupat")
+//	@ManyToMany
 	private Collection<Tuote> tuotteet;
 
 	private String nimi;
@@ -57,10 +58,20 @@ public class Kauppa implements Serializable {
 
 	public void setTuotteet(List<Tuote> tuotteet) {
 		this.tuotteet = tuotteet;
+		tuotteet.forEach(t -> t.addKauppa(this));
 	}
 	
 	public Collection<Tuote> getTuotteet() {
 		return tuotteet;
+	}
+	
+	public void addTuote(Tuote tuote) {
+		tuotteet.add(tuote);
+	}
+
+	public void addTuoteet(List<Tuote> tuotteet) {
+		this.tuotteet.addAll(tuotteet);
+		tuotteet.forEach(t -> t.addKauppa(this));
 	}
 
 	@Override

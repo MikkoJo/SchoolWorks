@@ -18,12 +18,14 @@ public class Tuote implements Serializable {
 	private Integer id;
 	
 //	@ManyToMany(cascade = CascadeType.ALL)
-	@ManyToMany(cascade=CascadeType.ALL)
-//	@JoinColumn(name = "tuote_id", referencedColumnName = "id" )
-	@JoinTable(
-			 joinColumns={@JoinColumn(name="id")},
-			 inverseJoinColumns={@JoinColumn(name="id")}
-			 )
+//	@ManyToMany(cascade=CascadeType.ALL)
+//	@JoinColumn(name = "tuote_id")
+//	@JoinTable(
+//			 joinColumns={@JoinColumn(name="id")},
+//			 inverseJoinColumns={@JoinColumn(name="id")}
+//			 )
+	@ManyToMany(targetEntity = Kauppa.class)
+//	@ManyToMany(mappedBy = "tuotteet")
 	private Collection<Kauppa> kaupat;
 	private String nimi;
 	private String koodi;
@@ -34,13 +36,6 @@ public class Tuote implements Serializable {
 		kaupat = new ArrayList<>();
 	}
 
-	public void addKauppa(Kauppa kauppa) {
-		kaupat.add(kauppa);
-	}
-	
-	public void addKaupat(List<Kauppa> kaupat) {
-		kaupat.addAll(kaupat);
-	}
 
 	public Integer getId() {
 		return id;
@@ -80,13 +75,23 @@ public class Tuote implements Serializable {
 
 	public void setKaupat(List<Kauppa> kaupat) {
 		this.kaupat = kaupat;
+		kaupat.forEach(k -> k.addTuote(this));
 	}
 	
+	public void addKauppa(Kauppa kauppa) {
+		kaupat.add(kauppa);
+	}
+	
+	public void addKaupat(List<Kauppa> kaupat) {
+		this.kaupat.addAll(kaupat);
+		kaupat.forEach(k -> k.addTuote(this));
+}
+
 	@Override
 	public String toString() {
-		return "Tuote [id=" + id + "]";
-		//return "Tuote [id=" + id + ", nimi=" + nimi + ", koodi=" + koodi + ", hinta=" + hinta + ", kaupat=" + kaupat
-		//		+ "]";
+//		return "Tuote [id=" + id + "]";
+		return "Tuote [id=" + id + ", nimi=" + nimi + ", koodi=" + koodi + ", hinta=" + hinta + ", kaupat=" + kaupat
+				+ "]";
 	}
 	
 }

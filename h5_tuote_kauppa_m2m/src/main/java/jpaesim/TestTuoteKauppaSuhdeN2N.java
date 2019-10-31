@@ -1,6 +1,7 @@
 package jpaesim;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.*;
@@ -42,19 +43,22 @@ public class TestTuoteKauppaSuhdeN2N {
         k3.setNimi("Verkkosportti");
         k3.setOsoite("Kuplahallintie 15, Toijala");
 
+        List<Tuote> tuotteet1 = new ArrayList<>();
+        tuotteet1.add(t1);
         List<Tuote> tuotteet2 = new ArrayList<>();
         tuotteet2.add(t1);
         tuotteet2.add(t3);
-        List<Tuote> tuotteet1 = new ArrayList<>();
-        tuotteet1.add(t1);
         List<Tuote> tuotteet3 = new ArrayList<>();
         tuotteet3.add(t3);
         
-        k1.setTuotteet(tuotteet1);
+//        k1.setTuotteet(Arrays.asList(t1, t2));
+//        k1.setTuotteet(tuotteet1);
         k2.setTuotteet(tuotteet2);
         k3.setTuotteet(tuotteet3);
 		// TODO: Määritä muut kaupat ja tuotteet
 
+        t1.setKaupat(Arrays.asList(k1,k3));
+//        t2.setKaupat(Arrays.asList(k3));
 		//kaupat.add(t2);
 
 		
@@ -69,7 +73,6 @@ public class TestTuoteKauppaSuhdeN2N {
 		manageri.persist(t1);
 		manageri.persist(t2);
 		manageri.persist(t3);
-//		manageri.persist(t1);
 		// TODO: Muut tuotteet ja kaupat myös tallennettava
 		
 		transaktio.commit();
